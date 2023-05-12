@@ -1,0 +1,5 @@
+CREATE SCHEMA firma_owner;
+
+INSERT INTO sistema
+(id ,url, apikey, apikeyrest, descripcion, nombre)
+VALUES(1,'http://172.29.0.3:8090/iess/firmaec', 'be43f8672e87644bbf5233c7907d03ec956ccf944b488fc515ef0171099ea70a', 'KZjUjGxjkRsHnjTGExS6bCJ7fegP5EJq', 'IESS', 'iess');
