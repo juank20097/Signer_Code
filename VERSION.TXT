@@ -1,0 +1,23 @@
+===V_1.0.0===
+
+Ticket#2023101171000669
+DESARROLLO DE SERVICIOS PARA EL COMPONENTE TRANSVERSAL FIRMA EC
+
+https://gitlab.iess.gob.ec/arquitectura/firmaec_iess/servicio_generico_firmaec/
+
+(C)pom.xml
+(C)src/main/java/ec/gob/iess/wsfirmaec/Controlador/FirDocfirmadosTControlador.java
+(C)src/main/java/ec/gob/iess/wsfirmaec/Entidad/FirDocfirmadosTEntidad.java
+(C)src/main/java/ec/gob/iess/wsfirmaec/Entidad/FirDocfirmadosdetTEntidad.java
+(C)src/main/java/ec/gob/iess/wsfirmaec/Repositorio/FirDocfirmadosTRepositorio.java
+(C)src/main/java/ec/gob/iess/wsfirmaec/Repositorio/FirDocfirmadosdetTRepositorio.java
+(C)src/main/java/ec/gob/iess/wsfirmaec/Servicio/FirDocfirmadosTServicio.java
+(C)src/main/java/ec/gob/iess/wsfirmaec/Servicio/FirDocfirmadosdetTServicio.java
+(C)src/main/java/ec/gob/iess/wsfirmaec/ServicioGenericoFirmaecApplication.java
+(C)src/main/java/ec/gob/iess/wsfirmaec/Utilitario/Auditoria.java
+(C)src/test/java/ec/gob/iess/wsfirmaec/ServicioGenericoFirmaecApplicationTests.java
+
+https://gitlab.iess.gob.ec/arquitectura/firmaec_iess/docker_containers
+
+(C)Spring/Dockerfile
+(C)Spring/servicio-generico-firmaec-1.0.0.jar
