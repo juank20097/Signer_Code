@@ -16,8 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import ec.gob.iess.wsfirmaec.Entidad.FirSistemasTPEntidad;
-import ec.gob.iess.wsfirmaec.Repositorio.FirSistemasTPRepositorio;
 import ec.gob.iess.wsfirmaec.Utilitario.ParametrosUtilitario;
 import jakarta.annotation.PostConstruct;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -39,9 +37,6 @@ public class FirTokenServicio {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	private FirSistemasTPRepositorio sistemaRepo;
 
 	@Value("${url.externa}")
 	private String UrlExterno;
@@ -67,21 +62,6 @@ public class FirTokenServicio {
 	        jdbcTemplate.update(sql,(long)1,this.UrlApi,this.ApiKey,this.ApiKeyRest,"IESS","iess");
 	    }
 	
-	/**
-	 * Método ejecutado después de la construcción del bean para guardar un sistema en la base de datos.
-	 * Utiliza las propiedades de la clase para inicializar un objeto FirSistemasTPEntidad y lo guarda en la base de datos.
-	 */
-	@PostConstruct
-	public void guardarSistema() {
-		FirSistemasTPEntidad sistema = new FirSistemasTPEntidad();
-		sistema.setId((long) 1);
-		sistema.setApiKey(this.ApiKey);
-		sistema.setApiKeyRest(this.ApiKeyRest);
-		sistema.setDescripcion("IESS");
-		sistema.setNombre("iess");
-		sistema.setUrl(this.UrlApi);
-		sistemaRepo.save(sistema);
-	}
 
 	/**
 	 * Obtiene el Token de los servicios del MINTEL.
@@ -97,7 +77,7 @@ public class FirTokenServicio {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.set("x-api-key", this.obtenerKey());
+		headers.set("x-api-key", this.ApiKeyRest);
 
 		HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
 		String respuesta = restTemplate.postForObject(servicioExternoUrl, requestEntity, String.class);
@@ -144,14 +124,5 @@ public class FirTokenServicio {
 				+ par.getPagina() + "," + "\"tipoEstampado\":\"" + par.getTipoEstampado() + "\"," + "\"razon\":\""
 				+ par.getRazon() + "\"," + "\"pre\":" + false + "," + "\"des\":" + false + "}";
 	}
-	
-	/**
-	 * Método para obtener la clave API REST de un sistema.
-	 * 
-	 * @return La clave API REST del primer sistema encontrado en la base de datos.
-	 */
-	private String obtenerKey() {
-		List<FirSistemasTPEntidad> list= sistemaRepo.findAll();
-		return list.get(0).getApiKeyRest();
-	}
+
 }
